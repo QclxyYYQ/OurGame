@@ -20,6 +20,14 @@ namespace Resource {
 
     }
     namespace Game {
+        char* const Player1 = "Resources\\Game\\player1.bmp";
+        char* const Player2 = "Resources\\Game\\player2.bmp";
+        char* const Tiles = "Resources\\Game\\tile.bmp";
+        char* const Enemy1 = "Resources\\Game\\enemy1.bmp";
+        char* const Enemy2 = "Resources\\Game\\enemy2.bmp";
+        char* const Explode = "Resources\\Game\\explode.bmp";
+        char* const Bore = "Resources\\Game\\bore.bmp";
+        char* const Flag = "Resources\\Game\\flag.bmp";
 
     }
 }
