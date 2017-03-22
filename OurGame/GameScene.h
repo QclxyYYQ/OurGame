@@ -7,5 +7,7 @@ public:
     void End();
     void Render();
     void Update();
+private:
+
 };
 

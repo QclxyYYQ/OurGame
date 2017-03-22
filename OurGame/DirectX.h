@@ -67,6 +67,11 @@ struct SPRITE
     }
 };
 
+
+//»­Ô²
+void Draw2DCircle(POINT pt, float radius, D3DCOLOR color);
+void Draw2DLine(POINT startPoint, POINT endPoint, D3DCOLOR color);
+
 bool Direct3D_Init(HWND hwnd, int width, int height, bool fullscreen);
 void Direct3D_Shutdown();
 LPDIRECT3DSURFACE9 LoadSurface(string filename);

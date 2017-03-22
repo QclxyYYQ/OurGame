@@ -22,4 +22,8 @@ namespace DebugTools {
         FontPrint(font, 0, 0, text, D3DCOLOR_XRGB(255, 255, 255));
 
     }
+    void PrintGrid()
+    {
+        
+    }
 }

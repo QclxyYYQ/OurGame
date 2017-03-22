@@ -59,6 +59,9 @@ bool Direct3D_Init(HWND window, int width, int height, bool fullscreen)
     //get a pointer to the back buffer surface
     d3dDev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuffer);
 
+    //设置纹理最近点采样模式
+    //d3dDev->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_POINT);
+
     //create sprite object
     D3DXCreateSprite(d3dDev, &spriteObj);
     return 1;
@@ -371,7 +374,7 @@ void DirectInput_Update(HWND hWnd)
         diMouse->Acquire();
     }
     ProcessInput(hWnd);
-    
+
 
     //更新键盘
     diKeyboard->Poll();
@@ -509,11 +512,81 @@ void FontPrint(LPD3DXFONT font, int x, int y, string text, D3DCOLOR color)
     font->DrawText(spriteObj, text.c_str(), text.length(), &rect, DT_LEFT, color);
 }
 
+struct D3DTLVERTEX
+{
+    float fX;
+    float fY;
+    float fZ;
+    float fRHW;
+    D3DCOLOR Color;
+    float fU;
+    float fV;
+};
 
-/**
+D3DTLVERTEX CreateD3DTLVERTEX(float X, float Y, float Z, float RHW,
+    D3DCOLOR color, float U, float V)
+{
+    D3DTLVERTEX v;
+
+    v.fX = X;
+    v.fY = Y;
+    v.fZ = Z;
+    v.fRHW = RHW;
+    v.Color = color;
+    v.fU = U;
+    v.fV = V;
+    return v;
+}
+//画线
+void Draw2DLine(POINT startPoint, POINT endPoint, D3DCOLOR color)
+{
+    D3DTLVERTEX v[] = {
+        CreateD3DTLVERTEX(startPoint.x, startPoint.y, 0.0f, 1.0f, color, 0.0f, 0.0f),
+        CreateD3DTLVERTEX(endPoint.x, endPoint.y, 0.0f, 1.0f, color, 0.0f, 0.0f) };
+    d3dDev->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+    d3dDev->SetTexture(0, NULL);
+    //dev->SetVertexShader (D3DFVF_MIRUSVERTEX);
+    d3dDev->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &v[0], sizeof(v[0]));
+}
+//画圆
+void Draw2DCircle(POINT pt, float radius, D3DCOLOR color)
+{
+    const int NUMPOINTS = 24;
+    const float PI = 3.14159;
+    D3DTLVERTEX Circle[NUMPOINTS + 1];
+    int i;
+    float X;
+    float Y;
+    float Theta;
+    float WedgeAngle; //Size of angle between two points on the circle (single wedge)
+                      //Precompute WedgeAngle
+    WedgeAngle = (float)((2 * PI) / NUMPOINTS);
+    //Set up vertices for a circle
+    //Used <= in the for statement to ensure last point meets first point (closed circle)
+    for (i = 0; i <= NUMPOINTS; i++)
+    {
+        //Calculate theta for this vertex
+        Theta = i * WedgeAngle;
+
+        //Compute X and Y locations
+        X = (float)(pt.x + radius * cos(Theta));
+        Y = (float)(pt.y - radius * sin(Theta));
+        Circle[i] = CreateD3DTLVERTEX(X, Y, 0.0f, 1.0f, color, 0.0f, 0.0f);
+    }
+    //Now draw the circle
+    d3dDev->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+    d3dDev->SetTexture(0, NULL);
+    //dev->SetVertexShader (D3DFVF_MIRUSVERTEX);
+    d3dDev->DrawPrimitiveUP(D3DPT_LINESTRIP, NUMPOINTS, &Circle[0], sizeof(Circle[0]));
+}
+
+
+
+
+
+ /**
  * DirectSound code
-**/
-
+ **/
 #include "DirectSound.h"
 
 
