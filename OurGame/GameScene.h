@@ -8,6 +8,6 @@ public:
     void Render();
     void Update();
 private:
-
+    void PrintBorder();
 };
 

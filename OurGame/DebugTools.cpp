@@ -22,8 +22,36 @@ namespace DebugTools {
         FontPrint(font, 0, 0, text, D3DCOLOR_XRGB(255, 255, 255));
 
     }
+    //绘制地图网格
     void PrintGrid()
     {
-        
+        using namespace Global::Game;
+        int count = Global::Game::MapSize / UnitSize;
+
+        POINT p;
+        p.x = Global::Game::StartX;
+        p.y = Global::Game::StartY;
+        POINT p2;
+        p2.x = Global::Game::StartX + Global::Game::MapSize;
+        p2.y = Global::Game::StartY;
+
+        //画行
+        for (int i = 1; i < count; i++)
+        {
+            p.y = p2.y += UnitSize;
+            Draw2DLine(p, p2, D3DCOLOR_XRGB(255, 179, 167));
+        }
+
+        p.x = Global::Game::StartX;
+        p.y = Global::Game::StartY;
+        p2.x = Global::Game::StartX;
+        p2.y = Global::Game::StartY + Global::Game::MapSize;
+        //画列
+        for (int i = 1; i < count; i++)
+        {
+            p.x = p2.x += UnitSize;
+            Draw2DLine(p, p2, D3DCOLOR_XRGB(255, 179, 167));
+        }
+        //Draw2DRect(p, p2, p3, p4, D3DCOLOR_XRGB(255, 255, 255));
     }
 }

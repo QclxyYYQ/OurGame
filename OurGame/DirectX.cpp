@@ -537,6 +537,14 @@ D3DTLVERTEX CreateD3DTLVERTEX(float X, float Y, float Z, float RHW,
     v.fV = V;
     return v;
 }
+//»­¾ØÐÎ
+void Draw2DRect(POINT LeftTop, POINT RightTop, POINT LeftBottom, POINT RightBottom, D3DCOLOR color)
+{
+    Draw2DLine(LeftTop, RightTop, color);
+    Draw2DLine(LeftTop, LeftBottom, color);
+    Draw2DLine(RightTop, RightBottom, color);
+    Draw2DLine(LeftBottom, RightBottom, color);
+}
 //»­Ïß
 void Draw2DLine(POINT startPoint, POINT endPoint, D3DCOLOR color)
 {
@@ -584,9 +592,9 @@ void Draw2DCircle(POINT pt, float radius, D3DCOLOR color)
 
 
 
- /**
- * DirectSound code
- **/
+/**
+* DirectSound code
+**/
 #include "DirectSound.h"
 
 

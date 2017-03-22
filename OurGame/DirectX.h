@@ -70,7 +70,10 @@ struct SPRITE
 
 //»­Ô²
 void Draw2DCircle(POINT pt, float radius, D3DCOLOR color);
+//»­Ïß
 void Draw2DLine(POINT startPoint, POINT endPoint, D3DCOLOR color);
+//»­¾ØÐÎ
+void Draw2DRect(POINT LeftTop, POINT RightTop, POINT LeftBottom, POINT RightBottom, D3DCOLOR color);
 
 bool Direct3D_Init(HWND hwnd, int width, int height, bool fullscreen);
 void Direct3D_Shutdown();

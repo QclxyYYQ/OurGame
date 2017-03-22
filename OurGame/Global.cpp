@@ -11,4 +11,6 @@ namespace Global {
     namespace Debug {
         int currentFPS = 0;
     }
+    namespace Game {
+    }
 }

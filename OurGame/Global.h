@@ -42,4 +42,14 @@ namespace Global {
         //当前总帧率
         extern int currentFPS;
     }
+    namespace Game {
+        //地图大小
+        const int MapSize = 600;
+        //单元格大小
+        const int UnitSize = 40;
+        //地图在屏幕的起始点
+        const int StartX = Global::Window::ScreenWidth / 2 - MapSize / 2;
+        const int StartY = Global::Window::ScreenHeight / 2 - MapSize / 2;
+
+    }
 }
