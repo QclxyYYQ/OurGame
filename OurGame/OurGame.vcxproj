@@ -155,6 +155,7 @@
     <ClCompile Include="DebugTools.cpp" />
     <ClCompile Include="DirectSound.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="HomeScene.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="DebugTools.h" />
     <ClInclude Include="DirectSound.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="GUIs.h" />

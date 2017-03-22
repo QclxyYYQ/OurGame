@@ -19,4 +19,7 @@ namespace Resource {
         char* const Backgroud = "Resources\\About\\Background.jpg";
 
     }
+    namespace Game {
+
+    }
 }
