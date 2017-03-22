@@ -44,9 +44,9 @@ namespace Global {
     }
     namespace Game {
         //地图大小
-        const int MapSize = 600;
+        const int MapSize = 640;
         //单元格大小
-        const int UnitSize = 40;
+        const int UnitSize = 32;
         //地图在屏幕的起始点
         const int StartX = Global::Window::ScreenWidth / 2 - MapSize / 2;
         const int StartY = Global::Window::ScreenHeight / 2 - MapSize / 2;

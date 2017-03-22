@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include"DirectX.h";
+#include"DirectX.h"
 using namespace std;
 //所有资源的路径
 namespace Resource {
@@ -28,6 +28,9 @@ namespace Resource {
         char* const Explode = "Resources\\Game\\explode.bmp";
         char* const Bore = "Resources\\Game\\bore.bmp";
         char* const Flag = "Resources\\Game\\flag.bmp";
+    }
+    namespace Textures {
+        extern LPDIRECT3DTEXTURE9 playerTexture1;
 
     }
 }

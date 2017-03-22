@@ -49,6 +49,12 @@
     <Filter Include="源文件\GUI">
       <UniqueIdentifier>{90f92a65-02da-40a0-947a-96f5d12448b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Objects">
+      <UniqueIdentifier>{0757a55b-7c3f-4717-a5d1-24badefe92cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Objects">
+      <UniqueIdentifier>{b67f7437-7aec-41d4-ab68-563a562089a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -81,8 +87,14 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>源文件\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ResourcesTools.cpp">
-      <Filter>源文件\Tools</Filter>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>源文件\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>源文件\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,8 +140,11 @@
     <ClInclude Include="GameScene.h">
       <Filter>头文件\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ResourcesTools.h">
-      <Filter>头文件\Tools</Filter>
+    <ClInclude Include="BaseObject.h">
+      <Filter>头文件\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>头文件\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

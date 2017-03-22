@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AboutScene.cpp" />
+    <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="CursorGUI.cpp" />
     <ClCompile Include="DebugTools.cpp" />
     <ClCompile Include="DirectSound.cpp" />
@@ -159,11 +160,13 @@
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="HomeScene.cpp" />
-    <ClCompile Include="ResourcesTools.cpp" />
+    <ClCompile Include="PlayerObject.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AboutScene.h" />
+    <ClInclude Include="BaseObject.h" />
     <ClInclude Include="CursorGUI.h" />
     <ClInclude Include="DebugTools.h" />
     <ClInclude Include="DirectSound.h" />
@@ -173,8 +176,8 @@
     <ClInclude Include="DirectX.h" />
     <ClInclude Include="GUIs.h" />
     <ClInclude Include="HomeScene.h" />
+    <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="ResourcesTools.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />
     <ClInclude Include="WinMain.h" />

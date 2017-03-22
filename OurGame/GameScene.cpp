@@ -3,6 +3,8 @@
 #include"DebugTools.h"
 bool GameScene::Init()
 {
+    player1 = new PlayerObject();
+    player1->Init();
     return true;
 }
 
@@ -12,7 +14,7 @@ void GameScene::End()
 
 void GameScene::Render()
 {
-   
+    player1->Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
     
@@ -24,6 +26,7 @@ void GameScene::Render()
 
 void GameScene::Update()
 {
+    player1->Update();
 }
 
 //»æÖÆµØÍ¼±ß½ç

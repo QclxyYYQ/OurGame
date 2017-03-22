@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include"PlayerObject.h"
 class GameScene : public virtual Scene
 {
 public:
@@ -9,5 +10,6 @@ public:
     void Update();
 private:
     void PrintBorder();
+    PlayerObject *player1;
 };
 
