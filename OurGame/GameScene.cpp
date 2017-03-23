@@ -38,6 +38,7 @@ void GameScene::Update()
 {
     player1->Update();
     player2->Update();
+    Map::Update();
 }
 
 //»æÖÆµØÍ¼±ß½ç

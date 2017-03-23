@@ -111,6 +111,9 @@
     <ClCompile Include="MapTool.cpp">
       <Filter>源文件\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="BulletObject.cpp">
+      <Filter>源文件\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="MapTool.h">
       <Filter>头文件\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletObject.h">
+      <Filter>头文件\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

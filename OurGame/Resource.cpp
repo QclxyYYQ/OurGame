@@ -5,7 +5,7 @@ namespace Resource {
         LPDIRECT3DTEXTURE9 tileTextures;
         LPDIRECT3DTEXTURE9 playerTexture1;
         LPDIRECT3DTEXTURE9 playerTexture2;
-
+        LPDIRECT3DTEXTURE9 bulletTexture;
 
 
     }

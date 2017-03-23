@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="AboutScene.cpp" />
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="BulletObject.cpp" />
     <ClCompile Include="CursorGUI.cpp" />
     <ClCompile Include="DebugTools.cpp" />
     <ClCompile Include="DirectSound.cpp" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="AboutScene.h" />
     <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="BulletObject.h" />
     <ClInclude Include="CursorGUI.h" />
     <ClInclude Include="DebugTools.h" />
     <ClInclude Include="DirectSound.h" />

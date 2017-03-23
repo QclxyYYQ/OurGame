@@ -28,11 +28,14 @@ namespace Resource {
         char* const Explode = "Resources\\Game\\explode.bmp";
         char* const Bore = "Resources\\Game\\bore.bmp";
         char* const Flag = "Resources\\Game\\flag.bmp";
+        char* const Bullet = "Resources\\Game\\bullet.png";
+
     }
     namespace Textures {
         extern LPDIRECT3DTEXTURE9 playerTexture1;
         extern LPDIRECT3DTEXTURE9 playerTexture2;
         extern LPDIRECT3DTEXTURE9 tileTextures;
+        extern LPDIRECT3DTEXTURE9 bulletTexture;
 
     }
 }

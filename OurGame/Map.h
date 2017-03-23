@@ -3,5 +3,6 @@
 namespace Map {
     void Init();
     void Render();
+    void Update();
     BaseObject GetNearObject();
 }

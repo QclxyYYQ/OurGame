@@ -24,7 +24,16 @@ enum ObjectType
     //µÐÈË
     Enemy,
     //Íæ¼Ò
-    Player
+    Player,
+    //×Óµ¯
+    Bullet,
+};
+enum DIRECTION
+{
+    UP = 0,
+    RIGHT = 1,
+    DOWN = 2,
+    LEFT = 3,
 };
 class  BaseObject
 {

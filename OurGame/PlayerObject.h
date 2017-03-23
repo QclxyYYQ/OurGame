@@ -9,13 +9,7 @@ public:
     void Update();
     void Render();
     int moveSpeed;
-    enum DIRECTION
-    {
-        UP = 0,
-        RIGHT = 1,
-        DOWN = 2,
-        LEFT = 3,
-    };
+
     SPRITE sprite;
     //方向
     DIRECTION direction;
@@ -26,5 +20,7 @@ public:
     //正在移动
     bool isMoving;
     void Move();
+
+    
 };
 

@@ -1,6 +1,7 @@
 #include"Map.h"
 #include"Global.h"
 #include"TileObject.h"
+#include"BulletObject.h"
 namespace Map {
     //MapSize*MapSize´óÐ¡µÄ¾ØÕó
     BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
@@ -33,13 +34,18 @@ namespace Map {
     {
 
     }
+    BulletObject *b;
     void Init() {
-       
-        CreateData();
+
+        //CreateData();
+        b = new BulletObject();
+        b->Init(2, 2, DIRECTION::RIGHT);
     }
     void Render()
     {
-        for (int i = 0; i < Global::Game::MapGridNum; i++)
+        if (b != NULL)
+            b->Render();
+        /*for (int i = 0; i < Global::Game::MapGridNum; i++)
         {
             for (int k = 0; k < Global::Game::MapGridNum; k++)
             {
@@ -48,7 +54,11 @@ namespace Map {
                     mapObjects[i][k]->Render();
                 }
             }
-        }
+        }*/
+    }
+    void Update() {
+        if (b != NULL)
+            b->Update();
     }
     BaseObject GetNearObject()
     {
@@ -56,6 +66,6 @@ namespace Map {
     }
     void End()
     {
-        delete mapObjects;
+        //delete mapObjects;
     }
 }
