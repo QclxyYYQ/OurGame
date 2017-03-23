@@ -2,49 +2,27 @@
 #include"Global.h"
 #include"TileObject.h"
 namespace Map {
-    int MapSize;
     //MapSize*MapSize´óÐ¡µÄ¾ØÕó
-    BaseObject** mapObjects = NULL;
-    TileObject *tileObjects = NULL;
-    TileObject *tile = NULL;
-    char** mapData;
-    void doCreateObject(ObjectType type)
-    {
-        switch (type)
-        {
-        case Brick:
-            break;
-        case Steel:
-            break;
-        case Grass:
-            break;
-        case DeepWater:
-            break;
-        case ShallowWater:
-            break;
-        case Snow:
-            break;
-        case Soil:
-            break;
-        case King:
-            break;
-        case Enemy:
-            break;
-        case Player:
-            break;
-        default:
-            break;
-        }
-    }
+    BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
     void CreateData()
     {
         srand(GetTickCount());
-
-        mapData = new char*[MapSize];
-        for (int i = 0; i < MapSize; i++)
+        /*
+        int s = rand() % 8;
+        mapObjects[0][0] = new TileObject();
+        mapObjects[0][0]->Init((ObjectType)s, 0, 0);
+        */
+        for (int i = 0; i < Global::Game::MapGridNum; i++)
         {
-            mapData[i] = (char*)new char[MapSize];
-            rand() % 8;
+            for (int k = 0; k < Global::Game::MapGridNum; k++)
+            {
+                int s = rand() % 8;
+                if (s > 0)
+                {
+                    mapObjects[i][k] = new TileObject();
+                    mapObjects[i][k]->Init((ObjectType)s, i, k);
+                }
+            }
         }
 
     }
@@ -53,30 +31,18 @@ namespace Map {
 
     }
     void Init() {
-        MapSize = Global::Game::MapSize / Global::Game::UnitSize;
-
+       
         CreateData();
-
-        tile = new TileObject();
-        tile->Init(ObjectType::Grass, 3, 4);
-
-        mapObjects = new BaseObject*[MapSize];
-        for (int i = 0; i < MapSize; i++)
-            mapObjects[i] = (BaseObject*)new BaseObject[MapSize];
     }
     void Render()
     {
-        if (tile != NULL)
+        for (int i = 0; i < Global::Game::MapGridNum; i++)
         {
-            tile->Render();
-            for (int i = 0; i < MapSize; i++)
+            for (int k = 0; k < Global::Game::MapGridNum; k++)
             {
-                for (int k = 0; k < MapSize; k++)
+                if (mapObjects[i][k] != NULL)
                 {
-                    /*if (mapObjects[i][k] != NULL)
-                    {
-
-                    }*/
+                    mapObjects[i][k]->Render();
                 }
             }
         }

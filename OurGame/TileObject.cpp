@@ -1,5 +1,6 @@
 #include "TileObject.h"
 #include"Resource.h"
+#include"MapTool.h"
 bool TileObject::Init(ObjectType o, int x, int y)
 {
     if (Resource::Textures::tileTextures == NULL)
@@ -18,7 +19,7 @@ void TileObject::Render()
 {
     if (type != 0)
     {
-        Sprite_Draw_Frame(Resource::Textures::tileTextures, Global::Game::StartX + location.x*Global::Game::UnitSize, Global::Game::StartY + location.y*Global::Game::UnitSize, type - 1, Global::Game::UnitSize, Global::Game::UnitSize, 9);
+        Sprite_Draw_Frame(Resource::Textures::tileTextures, MapTool::GetActualLocationX(location.x), MapTool::GetActualLocationY(location.y), type - 1, Global::Game::UnitSize, Global::Game::UnitSize, 9);
     }
 
 }

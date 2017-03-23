@@ -26,7 +26,7 @@ class  BaseObject
 {
 public:
     virtual ~BaseObject() {};
-    virtual bool Init() { return false; };
+    virtual bool Init(ObjectType o, int x, int y) { return false; };
     virtual void Update() {};
     virtual void Render() {};
     ObjectType type;

@@ -161,6 +161,7 @@
     <ClCompile Include="DirectX.cpp" />
     <ClCompile Include="HomeScene.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapTool.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="TileObject.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="GUIs.h" />
     <ClInclude Include="HomeScene.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapTool.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />

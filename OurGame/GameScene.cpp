@@ -20,9 +20,9 @@ void GameScene::End()
 
 void GameScene::Render()
 {
+    Map::Render();
     player1->Render();
     player2->Render();
-    Map::Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
     
