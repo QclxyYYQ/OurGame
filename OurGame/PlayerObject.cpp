@@ -7,13 +7,14 @@ bool PlayerObject::Init(int which)
     PlayerObject::which = which;
     if (which == 1)
     {
-        texture = LoadTexture(Game::Player1);
+        Resource::Textures::playerTexture1 = LoadTexture(Game::Player1);
     }
     else {
-        texture = LoadTexture(Game::Player2);
+        Resource::Textures::playerTexture2 = LoadTexture(Game::Player2);
     }
     sprite.x = Global::Game::StartX;
     sprite.y = Global::Game::StartY;
+    type = ObjectType::Player;
     moveSpeed = 8;
     level = 1;
     return true;
@@ -28,7 +29,7 @@ void PlayerObject::Update()
 
 void PlayerObject::Render()
 {
-    Sprite_Draw_Frame(texture, sprite.x, sprite.y, sprite.frame, Global::Game::UnitSize, Global::Game::UnitSize, 4);
+    Sprite_Draw_Frame(which == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, Global::Game::UnitSize, Global::Game::UnitSize, 4);
 }
 
 void PlayerObject::Move()

@@ -18,7 +18,7 @@ public:
     };
 private:
     SPRITE sprite;
-    LPDIRECT3DTEXTURE9 texture;
+    //LPDIRECT3DTEXTURE9 texture;
     //玩家1或玩家2
     int which;
     //方向

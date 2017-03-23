@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include"DirectX.h"
 #include"DebugTools.h"
+#include"Map.h"
 bool GameScene::Init()
 {
     player1 = new PlayerObject();
@@ -8,6 +9,8 @@ bool GameScene::Init()
 
     player2 = new PlayerObject();
     player2->Init(2);
+
+    Map::Init();
     return true;
 }
 
@@ -19,6 +22,7 @@ void GameScene::Render()
 {
     player1->Render();
     player2->Render();
+    Map::Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
     

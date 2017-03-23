@@ -31,6 +31,8 @@ namespace Resource {
     }
     namespace Textures {
         extern LPDIRECT3DTEXTURE9 playerTexture1;
+        extern LPDIRECT3DTEXTURE9 playerTexture2;
+        extern LPDIRECT3DTEXTURE9 tileTextures;
 
     }
 }

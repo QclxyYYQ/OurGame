@@ -55,6 +55,12 @@
     <Filter Include="源文件\Objects">
       <UniqueIdentifier>{b67f7437-7aec-41d4-ab68-563a562089a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Map">
+      <UniqueIdentifier>{5300bac4-b87b-4612-9ddb-87cc19e421c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Map">
+      <UniqueIdentifier>{c9905c6b-36da-4923-848e-e47e9967da43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -95,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="Resource.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>源文件\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileObject.cpp">
+      <Filter>源文件\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +156,12 @@
       <Filter>头文件\Objects</Filter>
     </ClInclude>
     <ClInclude Include="PlayerObject.h">
+      <Filter>头文件\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>头文件\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileObject.h">
       <Filter>头文件\Objects</Filter>
     </ClInclude>
   </ItemGroup>
