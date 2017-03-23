@@ -10,6 +10,6 @@ public:
     void Update();
 private:
     void PrintBorder();
-    PlayerObject *player1;
+    PlayerObject *player1,*player2;
 };
 

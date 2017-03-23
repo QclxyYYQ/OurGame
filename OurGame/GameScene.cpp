@@ -4,7 +4,10 @@
 bool GameScene::Init()
 {
     player1 = new PlayerObject();
-    player1->Init();
+    player1->Init(1);
+
+    player2 = new PlayerObject();
+    player2->Init(2);
     return true;
 }
 
@@ -15,6 +18,7 @@ void GameScene::End()
 void GameScene::Render()
 {
     player1->Render();
+    player2->Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
     
@@ -27,6 +31,7 @@ void GameScene::Render()
 void GameScene::Update()
 {
     player1->Update();
+    player2->Update();
 }
 
 //»æÖÆµØÍ¼±ß½ç
