@@ -50,6 +50,10 @@ namespace Map {
             }
         }
     }
+    BaseObject GetNearObject()
+    {
+        return BaseObject();
+    }
     void End()
     {
         delete mapObjects;

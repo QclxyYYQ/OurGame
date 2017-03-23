@@ -19,6 +19,8 @@ enum ObjectType
     ShallowWater,
     //王
     King,
+    //已死的王
+    KingDead,
     //敌人
     Enemy,
     //玩家

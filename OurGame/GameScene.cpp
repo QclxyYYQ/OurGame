@@ -2,6 +2,7 @@
 #include"DirectX.h"
 #include"DebugTools.h"
 #include"Map.h"
+#include"MapTool.h"
 bool GameScene::Init()
 {
     player1 = new PlayerObject();
@@ -25,9 +26,10 @@ void GameScene::Render()
     player2->Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
-    
+
     if (Global::Debug::ShowDebugInfo)
     {
+        DebugTools::SetPlayer1Pos(MapTool::GetMapLocationX(player1->sprite.x), MapTool::GetMapLocationY(player1->sprite.y));
         DebugTools::PrintGrid();
     }
 }

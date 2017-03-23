@@ -1,6 +1,9 @@
 #include"DebugTools.h"
 #include"DirectX.h"
+#include"MapTool.h"
 namespace DebugTools {
+    int player1_x;
+    int player1_y;
     string int2str(int int_temp) {
         stringstream stream;
         stream << int_temp;
@@ -19,6 +22,10 @@ namespace DebugTools {
         text += " Y: ";
         text += int2str(Mouse_Y());
         text += "\n";
+        text += "Íæ¼Ò1 X:";
+        text += int2str(player1_x);
+        text += " Y: ";
+        text += int2str(player1_y);
         FontPrint(font, 0, 0, text, D3DCOLOR_XRGB(255, 255, 255));
 
     }
@@ -53,5 +60,10 @@ namespace DebugTools {
             Draw2DLine(p, p2, D3DCOLOR_XRGB(255, 179, 167));
         }
         //Draw2DRect(p, p2, p3, p4, D3DCOLOR_XRGB(255, 255, 255));
+    }
+    void SetPlayer1Pos(int x, int y)
+    {
+        player1_x = x;
+        player1_y = y;
     }
 }
