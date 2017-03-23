@@ -25,6 +25,8 @@ private:
     DIRECTION direction;
     //等级
     int level ;
+    //正在移动
+    bool isMoving;
     void Move();
 };
 

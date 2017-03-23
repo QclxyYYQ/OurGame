@@ -15,21 +15,21 @@ bool PlayerObject::Init(int which)
     sprite.x = Global::Game::StartX;
     sprite.y = Global::Game::StartY;
     type = ObjectType::Player;
-    moveSpeed = 8;
-    level = 1;
+    moveSpeed = 4;
+    level = 3;
     return true;
 }
 
 void PlayerObject::Update()
 {
     Move();
-
-    Sprite_Animate(sprite.frame, direction * 4 + (level - 1) * 2, direction * 4 + (level - 1) * 2 + 1, 1, sprite.starttime, 40);
+    if (isMoving)
+        Sprite_Animate(sprite.frame, direction * 8 + (level - 1) * 2, direction * 8 + (level - 1) * 2 + 1, 1, sprite.starttime, 20);
 }
 
 void PlayerObject::Render()
 {
-    Sprite_Draw_Frame(which == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, Global::Game::UnitSize, Global::Game::UnitSize, 4);
+    Sprite_Draw_Frame(which == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, 28, 28, 8);
 }
 
 void PlayerObject::Move()
@@ -39,7 +39,7 @@ void PlayerObject::Move()
         if (Key_Down(DIK_S))
         {
             direction = DIRECTION::DOWN;
-
+            isMoving = true;
             if (sprite.y < Global::Game::StartY + Global::Game::MapSize - Global::Game::UnitSize)
             {
                 sprite.y += moveSpeed;
@@ -48,6 +48,8 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_W))
         {
             direction = DIRECTION::UP;
+            isMoving = true;
+
             if (sprite.y > Global::Game::StartY)
             {
                 sprite.y -= moveSpeed;
@@ -56,6 +58,7 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_A))
         {
             direction = DIRECTION::LEFT;
+            isMoving = true;
 
             if (sprite.x > Global::Game::StartX)
             {
@@ -65,17 +68,22 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_D))
         {
             direction = DIRECTION::RIGHT;
+            isMoving = true;
 
             if (sprite.x < Global::Game::StartX + Global::Game::MapSize - Global::Game::UnitSize)
             {
                 sprite.x += moveSpeed;
             }
         }
+        else {
+            isMoving = false;
+        }
     }
     else {
         if (Key_Down(DIK_DOWN))
         {
             direction = DIRECTION::DOWN;
+            isMoving = true;
 
             if (sprite.y < Global::Game::StartY + Global::Game::MapSize - Global::Game::UnitSize)
             {
@@ -85,6 +93,7 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_UP))
         {
             direction = DIRECTION::UP;
+            isMoving = true;
 
             if (sprite.y > Global::Game::StartY)
             {
@@ -94,6 +103,7 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_LEFT))
         {
             direction = DIRECTION::LEFT;
+            isMoving = true;
 
             if (sprite.x > Global::Game::StartX)
             {
@@ -103,11 +113,15 @@ void PlayerObject::Move()
         else if (Key_Down(DIK_RIGHT))
         {
             direction = DIRECTION::RIGHT;
+            isMoving = true;
 
             if (sprite.x < Global::Game::StartX + Global::Game::MapSize - Global::Game::UnitSize)
             {
                 sprite.x += moveSpeed;
             }
+        }
+        else {
+            isMoving = false;
         }
     }
 }

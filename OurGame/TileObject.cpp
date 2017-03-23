@@ -17,7 +17,7 @@ void TileObject::Update()
 
 void TileObject::Render()
 {
-    if (type != 0)
+    if (type != ObjectType::Null)
     {
         Sprite_Draw_Frame(Resource::Textures::tileTextures, MapTool::GetActualLocationX(location.x), MapTool::GetActualLocationY(location.y), type - 1, Global::Game::UnitSize, Global::Game::UnitSize, 9);
     }

@@ -1,20 +1,22 @@
 #pragma once
 enum ObjectType
 {
+    //空
+    Null = 0,
+    //雪地
+    Snow,
+    //泥地
+    Soil,
     //砖块
-    Brick = 1,
-    //钢板
-    Steel,
+    Brick,
+    //大理石
+    Marble,
     //草地
     Grass,
     //深水
     DeepWater,
     //浅水
     ShallowWater,
-    //雪地
-    Snow,
-    //泥土
-    Soil,
     //王
     King,
     //敌人

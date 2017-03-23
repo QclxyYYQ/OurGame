@@ -4,14 +4,11 @@
 namespace Map {
     //MapSize*MapSize大小的矩阵
     BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
+
+    //随机生成地图
     void CreateData()
     {
         srand(GetTickCount());
-        /*
-        int s = rand() % 8;
-        mapObjects[0][0] = new TileObject();
-        mapObjects[0][0]->Init((ObjectType)s, 0, 0);
-        */
         for (int i = 0; i < Global::Game::MapGridNum; i++)
         {
             for (int k = 0; k < Global::Game::MapGridNum; k++)
@@ -26,7 +23,13 @@ namespace Map {
         }
 
     }
+    //从文件载入地图
     void LoadData()
+    {
+
+    }
+    //将地图写到文件
+    void SaveData()
     {
 
     }
