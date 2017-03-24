@@ -5,9 +5,10 @@
 #include<list>
 #include"PlayerObject.h"
 #include"MapTool.h"
+#include"DebugTools.h"
 namespace Map {
     //MapSize*MapSize大小的矩阵
-    BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
+    TileObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
     //子弹链表
     list<BulletObject*> bullets;
     //玩家链表
@@ -61,9 +62,15 @@ namespace Map {
 
     }
     void Init() {
-
+        //mapObjects = (TileObject *)calloc(Global::Game::MapGridNum*Global::Game::MapGridNum, sizeof(TileObject *));
+        for (int i = 0; i < Global::Game::MapGridNum; i++)
+        {
+            for (int k = 0; k < Global::Game::MapGridNum; k++)
+            {
+                mapObjects[i][k] = NULL;
+            }
+        }
         CreateData();
-        //CreateBullet(3, 3, DIRECTION::RIGHT);
     }
     void RenderMap()
     {
@@ -103,6 +110,7 @@ namespace Map {
             while (iter != players.end())
             {
                 (*iter)->Render();
+                DebugTools::PrintPlayerGrid((*iter)->sprite.x, (*iter)->sprite.y);
                 if (players.size() > 0)
                     ++iter;
                 else
@@ -153,7 +161,7 @@ namespace Map {
         UpdateBullets();
     }
 
-    BaseObject* GetMapObject(int x, int y)
+    TileObject* GetMapObject(int x, int y)
     {
         if (x >= 0 && x < Global::Game::MapGridNum) {
             if (y >= 0 && y < Global::Game::MapGridNum)

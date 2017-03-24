@@ -32,6 +32,22 @@ namespace DebugTools {
         FontPrint(font, 0, 0, text, D3DCOLOR_XRGB(255, 255, 255));
 
     }
+    void PrintPlayerGrid(int x, int y)
+    {
+        POINT p1;
+        p1.x = x;
+        p1.y = y;
+        POINT p2;
+        p2.x = x + Global::Game::UnitSize;
+        p2.y = y;
+        POINT p3;
+        p3.x = x;
+        p3.y = y + +Global::Game::UnitSize;
+        POINT p4;
+        p4.x = x + Global::Game::UnitSize;;
+        p4.y = y + Global::Game::UnitSize;
+        Draw2DRect(p1, p2, p3, p4, D3DCOLOR_XRGB(128, 128, 128));
+    }
     //»æÖÆµØÍ¼Íø¸ñ
     void PrintGrid()
     {

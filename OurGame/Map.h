@@ -1,5 +1,6 @@
 #pragma once
 #include"BaseObject.h"
+#include"TileObject.h"
 namespace Map {
     void Init();
     void Render();
@@ -8,6 +9,6 @@ namespace Map {
     void CreateBullet(int belongTo, int x, int y, DIRECTION Dir, float speed);
     //´´½¨Íæ¼Ò
     void CreatePlayer(int id, int x, int y);
-    BaseObject* GetMapObject(int x, int y);
+    TileObject* GetMapObject(int x, int y);
     int GetBulletCount();
 }

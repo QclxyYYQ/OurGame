@@ -3,6 +3,7 @@
 #include"DirectX.h"
 #include"Map.h"
 #include"MapTool.h"
+#include"TileObject.h"
 using namespace Resource;
 bool PlayerObject::Init(int which)
 {
@@ -34,7 +35,25 @@ void PlayerObject::Render()
 {
     Sprite_Draw_Frame(id == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, 28, 28, 8);
 }
-
+bool PlayerObject::CheckAcross(int x, int y)
+{
+    int xx, yy;
+    xx = MapTool::GetMapLocationX(x);
+    yy = MapTool::GetMapLocationY(y);
+    TileObject *t = Map::GetMapObject(xx, yy);
+    if (t == NULL)
+        return true;
+    switch (t->type)
+    {
+    case Brick:
+    case Marble:
+    case DeepWater:
+        return false;
+    default:
+        break;
+    }
+    return true;
+}
 void PlayerObject::Move()
 {
     if (PlayerObject::id == 1)
@@ -43,8 +62,11 @@ void PlayerObject::Move()
         {
             direction = DIRECTION::DOWN;
             isMoving = true;
+
             if (sprite.y < Global::Game::StartY + Global::Game::MapSize - Global::Game::UnitSize)
             {
+                if (!CheckAcross(sprite.x, sprite.y + moveSpeed))
+                    return;
                 sprite.y += moveSpeed;
             }
         }
@@ -55,6 +77,8 @@ void PlayerObject::Move()
 
             if (sprite.y > Global::Game::StartY)
             {
+                if (!CheckAcross(sprite.x, sprite.y - moveSpeed))
+                    return;
                 sprite.y -= moveSpeed;
             }
         }
@@ -65,6 +89,8 @@ void PlayerObject::Move()
 
             if (sprite.x > Global::Game::StartX)
             {
+                if (!CheckAcross(sprite.x - moveSpeed, sprite.y))
+                    return;
                 sprite.x -= moveSpeed;
             }
         }
@@ -75,6 +101,8 @@ void PlayerObject::Move()
 
             if (sprite.x < Global::Game::StartX + Global::Game::MapSize - Global::Game::UnitSize)
             {
+                if (!CheckAcross(sprite.x + moveSpeed, sprite.y))
+                    return;
                 sprite.x += moveSpeed;
             }
         }

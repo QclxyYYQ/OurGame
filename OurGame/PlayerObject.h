@@ -8,6 +8,7 @@ public:
     bool Init(int which);
     void Update();
     void Render();
+    bool CheckAcross(int x, int y);
     int moveSpeed;
 
     SPRITE sprite;

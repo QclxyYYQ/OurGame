@@ -25,7 +25,8 @@ namespace MapTool {
         x -= Global::Game::StartX;
         if (x > 0)
         {
-            return round((float)x / (float)Global::Game::UnitSize);
+            
+            return round(((float)x) / (float)Global::Game::UnitSize);
         }
         return 0;
     }
@@ -35,7 +36,7 @@ namespace MapTool {
         y -= Global::Game::StartY;
         if (y > 0)
         {
-            return round((float)y / (float)Global::Game::UnitSize);
+            return round(((float)y) / (float)Global::Game::UnitSize);
         }
         return 0;
     }
