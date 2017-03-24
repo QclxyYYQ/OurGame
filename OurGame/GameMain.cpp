@@ -29,8 +29,10 @@ bool Game_Init(HWND window)
     }
     GUI::Cursor::Init();
 
+    Game_ChangeScene(GAME_STATE::Playing);
+
     //ÇÐ»»µ½»¶Ó­³¡¾°
-    Game_ChangeScene(GAME_STATE::Home);
+    //Game_ChangeScene(GAME_STATE::Home);
 
     return true;
 }

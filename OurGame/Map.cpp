@@ -23,9 +23,9 @@ namespace Map {
     void CreateData()
     {
         srand(GetTickCount());
-        for (int i = 0; i < Global::Game::MapGridNum; i++)
+        for (int i = rand() % Global::Game::MapGridNum; i < Global::Game::MapGridNum; i++)
         {
-            for (int k = 0; k < Global::Game::MapGridNum; k++)
+            for (int k = rand() % Global::Game::MapGridNum; k < Global::Game::MapGridNum; k++)
             {
                 int s = rand() % 8;
                 if (s > 0)
