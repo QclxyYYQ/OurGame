@@ -9,9 +9,9 @@ public:
     void Update();
     void Render();
     int dir;
-    POINT location;
     float speed;
     SPRITE sprite;
     bool isDeleted;
+    int belongTo;
 };
 

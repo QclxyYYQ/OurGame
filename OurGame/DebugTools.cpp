@@ -1,6 +1,6 @@
 #include"DebugTools.h"
 #include"DirectX.h"
-#include"MapTool.h"
+#include"Map.h"
 namespace DebugTools {
     int player1_x;
     int player1_y;
@@ -26,6 +26,9 @@ namespace DebugTools {
         text += int2str(player1_x);
         text += " Y: ";
         text += int2str(player1_y);
+        text += "\nÅÚµ¯ÊýÁ¿£º";
+        text += int2str(Map::GetBulletCount());
+
         FontPrint(font, 0, 0, text, D3DCOLOR_XRGB(255, 255, 255));
 
     }

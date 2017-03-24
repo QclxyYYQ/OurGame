@@ -2,18 +2,17 @@
 #include"Resource.h"
 #include"MapTool.h"
 #include"DirectX.h"
+#include"Map.h"
 bool BulletObject::Init(int x, int y, DIRECTION dir)
 {
     if (Resource::Textures::bulletTexture == NULL)
         Resource::Textures::bulletTexture = LoadTexture(Resource::Game::Bullet);
     type = ObjectType::Bullet;
-    location.x = x;
-    location.y = y;
     BulletObject::dir = dir;
-    sprite.x = MapTool::GetActualLocationX(location.x) + 16 - 4;
-    sprite.y = MapTool::GetActualLocationY(location.y) + 16 - 4;
+    //加上从坦克左上角顶点到坦克炮筒的坐标偏移
+    sprite.x = x + 10;
+    sprite.y = y + 10;
 
-    speed = 2.0f;
     return true;
 }
 void BulletObject::Update()
@@ -22,7 +21,7 @@ void BulletObject::Update()
     {
     case UP:
         if (sprite.y > Global::Game::StartY)
-            sprite.y += speed;
+            sprite.y -= speed;
         else
         {
             isDeleted = true;
@@ -30,7 +29,7 @@ void BulletObject::Update()
         break;
     case DOWN:
         if (sprite.y < Global::Game::StartY + Global::Game::MapSize - 8)
-            sprite.y -= speed;
+            sprite.y += speed;
         else
         {
             isDeleted = true;

@@ -14,13 +14,14 @@ public:
     //方向
     DIRECTION direction;
     //玩家1或玩家2
-    int which;
+    int id;
     //等级
     int level ;
     //正在移动
     bool isMoving;
+private:
     void Move();
-
+    void Launch();
     
 };
 

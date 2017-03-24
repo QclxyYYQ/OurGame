@@ -30,7 +30,7 @@ bool Game_Init(HWND window)
     GUI::Cursor::Init();
 
     //ÇÐ»»µ½»¶Ó­³¡¾°
-    Game_ChangeScene(GAME_STATE::Playing);
+    Game_ChangeScene(GAME_STATE::Home);
 
     return true;
 }
@@ -103,6 +103,7 @@ void Game_ChangeScene(GAME_STATE to)
         {
         case GAME_STATE::Home:
             scene = new HomeScene();
+            break;
         case GAME_STATE::Playing:
             scene = new GameScene();
             break;

@@ -1,10 +1,12 @@
 #include "PlayerObject.h"
 #include"Resource.h"
 #include"DirectX.h"
+#include"Map.h"
+#include"MapTool.h"
 using namespace Resource;
 bool PlayerObject::Init(int which)
 {
-    PlayerObject::which = which;
+    PlayerObject::id = which;
     if (which == 1)
     {
         Resource::Textures::playerTexture1 = LoadTexture(Game::Player1);
@@ -25,16 +27,17 @@ void PlayerObject::Update()
     Move();
     if (isMoving)
         Sprite_Animate(sprite.frame, direction * 8 + (level - 1) * 2, direction * 8 + (level - 1) * 2 + 1, 1, sprite.starttime, 20);
+    Launch();
 }
 
 void PlayerObject::Render()
 {
-    Sprite_Draw_Frame(which == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, 28, 28, 8);
+    Sprite_Draw_Frame(id == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, 28, 28, 8);
 }
 
 void PlayerObject::Move()
 {
-    if (PlayerObject::which == 1)
+    if (PlayerObject::id == 1)
     {
         if (Key_Down(DIK_S))
         {
@@ -124,4 +127,22 @@ void PlayerObject::Move()
             isMoving = false;
         }
     }
+}
+
+void PlayerObject::Launch()
+{
+    if (id == 1)
+    {
+        if (Key_Up(DIK_SPACE))
+        {
+            Map::CreateBullet(id, sprite.x, sprite.y, direction, 6);
+        }
+    }
+    else {
+        if (Key_Up(DIK_NUMPAD0))
+        {
+            Map::CreateBullet(id, sprite.x, sprite.y, direction, 6);
+        }
+    }
+
 }

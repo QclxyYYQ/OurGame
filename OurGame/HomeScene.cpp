@@ -70,7 +70,7 @@ void HomeScene::Update()
         switch (choose)
         {
         case 0:
-            //Game_ChangeScene();
+            Game_ChangeScene(GAME_STATE::Playing);
             break;
         case 1:
             break;

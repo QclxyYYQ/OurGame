@@ -2,9 +2,22 @@
 #include"Global.h"
 #include"TileObject.h"
 #include"BulletObject.h"
+#include<list>
 namespace Map {
     //MapSize*MapSize大小的矩阵
     BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
+
+    list<BulletObject*> bullets;
+
+    //产生一颗炮弹，belongTo发射者坦克ID，x,y为发射者坦克精灵坐标，dir方向，speed 速度
+    void CreateBullet(int belongTo, int x, int y, DIRECTION Dir, float speed)
+    {
+        BulletObject *b = new BulletObject();
+        b->Init(x, y, Dir);
+        b->speed = speed;
+        b->belongTo = belongTo;
+        bullets.push_back(b);
+    }
 
     //随机生成地图
     void CreateData()
@@ -34,18 +47,14 @@ namespace Map {
     {
 
     }
-    BulletObject *b;
     void Init() {
 
-        //CreateData();
-        b = new BulletObject();
-        b->Init(2, 2, DIRECTION::RIGHT);
+        CreateData();
+        //CreateBullet(3, 3, DIRECTION::RIGHT);
     }
-    void Render()
+    void RenderMap()
     {
-        if (b != NULL)
-            b->Render();
-        /*for (int i = 0; i < Global::Game::MapGridNum; i++)
+        for (int i = 0; i < Global::Game::MapGridNum; i++)
         {
             for (int k = 0; k < Global::Game::MapGridNum; k++)
             {
@@ -54,18 +63,75 @@ namespace Map {
                     mapObjects[i][k]->Render();
                 }
             }
-        }*/
+        }
+    }
+    void RenderBullets()
+    {
+        list<BulletObject*>::iterator iter;
+        if (bullets.size() > 0)
+        {
+            iter = bullets.begin();
+            while (iter != bullets.end())
+            {
+                (*iter)->Render();
+                if (bullets.size() > 0)
+                    ++iter;
+                else
+                    break;
+            }
+        }
+    }
+    void Render()
+    {
+        RenderMap();
+        RenderBullets();
+
+    }
+    void UpdateBullets() {
+        list<BulletObject*>::iterator iter;
+        if (bullets.size() > 0)
+        {
+            iter = bullets.begin();
+            while (iter != bullets.end())
+            {
+                if ((*iter)->isDeleted)
+                {
+                    delete (*iter);
+                    bullets.erase(iter++);
+                }
+                else {
+                    (*iter)->Update();
+                    ++iter;
+                }
+            }
+        }
     }
     void Update() {
-        if (b != NULL)
-            b->Update();
+        UpdateBullets();
     }
-    BaseObject GetNearObject()
+    BaseObject* GetMapObject(int x, int y)
     {
-        return BaseObject();
+        if (x >= 0 && x < Global::Game::MapGridNum) {
+            if (y >= 0 && y < Global::Game::MapGridNum)
+            {
+                return mapObjects[x][y];
+            }
+        }
     }
     void End()
     {
-        //delete mapObjects;
+        list<BulletObject*>::iterator iter;
+        if (bullets.size() > 0)
+        {
+            iter = bullets.begin();
+            while (iter != bullets.end())
+            {
+                delete (*iter);
+                bullets.erase(iter++);
+            }
+        }
+    }
+    int GetBulletCount() {
+        return bullets.size();
     }
 }
