@@ -5,13 +5,8 @@
 #include"MapTool.h"
 bool GameScene::Init()
 {
-    player1 = new PlayerObject();
-    player1->Init(1);
-
-    player2 = new PlayerObject();
-    player2->Init(2);
-
     Map::Init();
+    Map::CreatePlayer(1, 0, 0);
     return true;
 }
 
@@ -22,22 +17,17 @@ void GameScene::End()
 void GameScene::Render()
 {
     Map::Render();
-    player1->Render();
-    player2->Render();
     PrintBorder();
     //Draw2DCircle(p, 100,D3DCOLOR_ARGB(0, 255, 179, 167)); 
-
     if (Global::Debug::ShowDebugInfo)
     {
-        DebugTools::SetPlayer1Pos(MapTool::GetMapLocationX(player1->sprite.x), MapTool::GetMapLocationY(player1->sprite.y));
+        //DebugTools::SetPlayer1Pos(MapTool::GetMapLocationX(player1->sprite.x), MapTool::GetMapLocationY(player1->sprite.y));
         DebugTools::PrintGrid();
     }
 }
 
 void GameScene::Update()
 {
-    player1->Update();
-    player2->Update();
     Map::Update();
 }
 

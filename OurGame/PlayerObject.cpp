@@ -18,7 +18,7 @@ bool PlayerObject::Init(int which)
     sprite.y = Global::Game::StartY;
     type = ObjectType::Player;
     moveSpeed = 4;
-    level = 3;
+    level = 1;
     return true;
 }
 

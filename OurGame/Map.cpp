@@ -3,11 +3,15 @@
 #include"TileObject.h"
 #include"BulletObject.h"
 #include<list>
+#include"PlayerObject.h"
+#include"MapTool.h"
 namespace Map {
     //MapSize*MapSize大小的矩阵
     BaseObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
-
+    //子弹链表
     list<BulletObject*> bullets;
+    //玩家链表
+    list<PlayerObject*> players;
 
     //产生一颗炮弹，belongTo发射者坦克ID，x,y为发射者坦克精灵坐标，dir方向，speed 速度
     void CreateBullet(int belongTo, int x, int y, DIRECTION Dir, float speed)
@@ -18,7 +22,16 @@ namespace Map {
         b->belongTo = belongTo;
         bullets.push_back(b);
     }
+    //创建玩家，x,y为地图坐标
+    void CreatePlayer(int id, int x, int y)
+    {
+        PlayerObject *p = new PlayerObject();
+        p->Init(id);
+        p->sprite.x = MapTool::GetActualLocationX(x);
+        p->sprite.y = MapTool::GetActualLocationY(y);
+        players.push_back(p);
 
+    }
     //随机生成地图
     void CreateData()
     {
@@ -81,11 +94,40 @@ namespace Map {
             }
         }
     }
+    void RenderPlayers()
+    {
+        list<PlayerObject*>::iterator iter;
+        if (players.size() > 0)
+        {
+            iter = players.begin();
+            while (iter != players.end())
+            {
+                (*iter)->Render();
+                if (players.size() > 0)
+                    ++iter;
+                else
+                    break;
+            }
+        }
+    }
     void Render()
     {
         RenderMap();
         RenderBullets();
-
+        RenderPlayers();
+    }
+    void UpdatePlayers()
+    {
+        list<PlayerObject*>::iterator iter;
+        if (players.size() > 0)
+        {
+            iter = players.begin();
+            while (iter != players.end())
+            {
+                (*iter)->Update();
+                ++iter;
+            }
+        }
     }
     void UpdateBullets() {
         list<BulletObject*>::iterator iter;
@@ -107,8 +149,10 @@ namespace Map {
         }
     }
     void Update() {
+        UpdatePlayers();
         UpdateBullets();
     }
+
     BaseObject* GetMapObject(int x, int y)
     {
         if (x >= 0 && x < Global::Game::MapGridNum) {
