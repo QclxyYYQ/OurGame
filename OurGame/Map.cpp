@@ -110,7 +110,7 @@ namespace Map {
             while (iter != players.end())
             {
                 (*iter)->Render();
-                DebugTools::PrintPlayerGrid((*iter)->sprite.x, (*iter)->sprite.y);
+                DebugTools::PrintGrid((*iter)->sprite.x, (*iter)->sprite.y, D3DCOLOR_XRGB(128, 128, 128));
                 if (players.size() > 0)
                     ++iter;
                 else
@@ -185,5 +185,33 @@ namespace Map {
     }
     int GetBulletCount() {
         return bullets.size();
+    }
+
+    //取得前进方向最近的两个地图方块，传入屏幕坐标x，y
+    int GetNearTile(DIRECTION dir, int x, int y, TileObject** t)
+    {
+        t[0] = GetMapObject(MapTool::GetMapLocationX(x), MapTool::GetMapLocationY(y));
+        t[1] = NULL;
+
+        switch (dir)
+        {
+        case UP:
+        case DOWN:
+            if (x%Global::Game::UnitSize > 0)
+            {
+                t[1] = GetMapObject(MapTool::GetMapLocationX(x) + 1, MapTool::GetMapLocationY(y));
+            }
+            return 2;
+        case RIGHT:
+        case LEFT:
+            if (y%Global::Game::UnitSize > 0)
+            {
+                t[1] = GetMapObject(MapTool::GetMapLocationX(x), MapTool::GetMapLocationY(y) + 1);
+            }
+            return 2;
+        default:
+            break;
+        }
+        return 1;
     }
 }

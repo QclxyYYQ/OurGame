@@ -20,6 +20,9 @@ public:
     int level ;
     //ÕıÔÚÒÆ¶¯
     bool isMoving;
+
+    void SlowSpeed(int speed);
+    void AddSpeed(int speed);
 private:
     void Move();
     void Launch();

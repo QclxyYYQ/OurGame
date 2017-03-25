@@ -4,6 +4,7 @@
 #include"Map.h"
 #include"MapTool.h"
 #include"TileObject.h"
+#include"DebugTools.h"
 using namespace Resource;
 bool PlayerObject::Init(int which)
 {
@@ -35,6 +36,12 @@ void PlayerObject::Update()
 void PlayerObject::Render()
 {
     Sprite_Draw_Frame(id == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, sprite.width, sprite.height, 8);
+
+    SPRITE s;
+    s.x = sprite.x;
+    s.y = sprite.y;
+    s.width = sprite.width;
+    s.height = sprite.height;
 }
 bool PlayerObject::CheckAcross(int x, int y)
 {
@@ -47,29 +54,65 @@ bool PlayerObject::CheckAcross(int x, int y)
     s.y = y;
     s.width = sprite.width;
     s.height = sprite.height;
-    for (int i = 0; i < Global::Game::MapGridNum; i++)
+    TileObject* t[2];
+    Map::GetNearTile(direction, s.x, s.y, t);
+
+    for (int i = 0; i < 2; i++)
     {
-        for (int k = 0; k < Global::Game::MapGridNum; k++)
+        if (t[i] != NULL)
         {
-            if (Map::mapObjects[i][k] != NULL)
+            switch (t[i]->type)
             {
-                switch (Map::mapObjects[i][k]->type)
+            case Brick:
+            case Marble:
+            case DeepWater:
+            case ShallowWater:
+                if (Collision(t[i]->sprite, s))
                 {
-                case Brick:
-                case Marble:
-                case DeepWater:
-                    if (Collision(Map::mapObjects[i][k]->sprite, s))
-                    {
-                        return false;
-                    }
-                default:
-                    break;
+                    return false;
                 }
+            default:
+                break;
             }
         }
     }
+    /* for (int i = 0; i < Global::Game::MapGridNum; i++)
+     {
+         for (int k = 0; k < Global::Game::MapGridNum; k++)
+         {
+             if (Map::mapObjects[i][k] != NULL)
+             {
+                 switch (Map::mapObjects[i][k]->type)
+                 {
+                 case Brick:
+                 case Marble:
+                 case DeepWater:
+                     if (Collision(Map::mapObjects[i][k]->sprite, s))
+                     {
+                         return false;
+                     }
+                 default:
+                     break;
+                 }
+             }
+         }
+     }*/
 
     return true;
+}
+void PlayerObject::SlowSpeed(int speed)
+{
+    if (moveSpeed - speed > 1)
+    {
+        moveSpeed -= speed;
+    }
+    else {
+        moveSpeed = 1;
+    }
+}
+void PlayerObject::AddSpeed(int speed)
+{
+    moveSpeed += speed;
 }
 void PlayerObject::Move()
 {
@@ -82,7 +125,7 @@ void PlayerObject::Move()
 
             if (sprite.y < Global::Game::StartY + Global::Game::MapSize - Global::Game::UnitSize)
             {
-                if (!CheckAcross(sprite.x, sprite.y + moveSpeed))
+                if (!CheckAcross(sprite.x, sprite.y + moveSpeed + sprite.height))
                     return;
                 sprite.y += moveSpeed;
             }
@@ -118,7 +161,7 @@ void PlayerObject::Move()
 
             if (sprite.x < Global::Game::StartX + Global::Game::MapSize - Global::Game::UnitSize)
             {
-                if (!CheckAcross(sprite.x + moveSpeed, sprite.y))
+                if (!CheckAcross(sprite.x + moveSpeed + sprite.width, sprite.y))
                     return;
                 sprite.x += moveSpeed;
             }
@@ -180,7 +223,7 @@ void PlayerObject::Launch()
     {
         if (Key_Up(DIK_SPACE))
         {
-            Map::CreateBullet(id, sprite.x, sprite.y, direction, 6);
+            Map::CreateBullet(id, sprite.x, sprite.y, direction, 20);
         }
     }
     else {

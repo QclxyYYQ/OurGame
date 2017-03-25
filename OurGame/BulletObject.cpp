@@ -20,7 +20,7 @@ void BulletObject::Update()
     switch (dir)
     {
     case UP:
-        if (sprite.y > Global::Game::StartY)
+        if (sprite.y - speed > Global::Game::StartY)
             sprite.y -= speed;
         else
         {
@@ -28,21 +28,21 @@ void BulletObject::Update()
         }
         break;
     case DOWN:
-        if (sprite.y < Global::Game::StartY + Global::Game::MapSize - 8)
+        if (sprite.y + speed < Global::Game::StartY + Global::Game::MapSize )
             sprite.y += speed;
         else
         {
             isDeleted = true;
         } break;
     case LEFT:
-        if (sprite.x > Global::Game::StartX)
+        if (sprite.x- speed > Global::Game::StartX)
             sprite.x -= speed;
         else
         {
             isDeleted = true;
         }break;
     case RIGHT:
-        if (sprite.x < Global::Game::StartX + Global::Game::MapSize - 8)
+        if (sprite.x + speed < Global::Game::StartX + Global::Game::MapSize)
             sprite.x += speed;
         else {
             isDeleted = true;

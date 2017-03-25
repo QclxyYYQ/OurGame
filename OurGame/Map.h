@@ -12,4 +12,5 @@ namespace Map {
     void CreatePlayer(int id, int x, int y);
     TileObject* GetMapObject(int x, int y);
     int GetBulletCount();
+    int GetNearTile(DIRECTION dir, int x, int y, TileObject** t);
 }
