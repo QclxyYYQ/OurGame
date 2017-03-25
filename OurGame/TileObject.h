@@ -9,5 +9,6 @@ public:
     void Update();
     void Render();
     POINT location;
+    SPRITE sprite;
 };
 

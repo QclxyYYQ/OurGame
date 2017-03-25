@@ -17,8 +17,9 @@ bool PlayerObject::Init(int which)
     }
     sprite.x = Global::Game::StartX;
     sprite.y = Global::Game::StartY;
+    sprite.width = sprite.height = 28;
     type = ObjectType::Player;
-    moveSpeed = 4;
+    moveSpeed = 8;
     level = 1;
     return true;
 }
@@ -33,25 +34,41 @@ void PlayerObject::Update()
 
 void PlayerObject::Render()
 {
-    Sprite_Draw_Frame(id == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, 28, 28, 8);
+    Sprite_Draw_Frame(id == 1 ? Resource::Textures::playerTexture1 : Resource::Textures::playerTexture2, sprite.x, sprite.y, sprite.frame, sprite.width, sprite.height, 8);
 }
 bool PlayerObject::CheckAcross(int x, int y)
 {
-    int xx, yy;
-    xx = MapTool::GetMapLocationX(x);
-    yy = MapTool::GetMapLocationY(y);
-    TileObject *t = Map::GetMapObject(xx, yy);
-    if (t == NULL)
-        return true;
-    switch (t->type)
+    /* int xx, yy;
+     xx = MapTool::GetMapLocationX(x);
+     yy = MapTool::GetMapLocationY(y);
+    */
+    SPRITE s;
+    s.x = x;
+    s.y = y;
+    s.width = sprite.width;
+    s.height = sprite.height;
+    for (int i = 0; i < Global::Game::MapGridNum; i++)
     {
-    case Brick:
-    case Marble:
-    case DeepWater:
-        return false;
-    default:
-        break;
+        for (int k = 0; k < Global::Game::MapGridNum; k++)
+        {
+            if (Map::mapObjects[i][k] != NULL)
+            {
+                switch (Map::mapObjects[i][k]->type)
+                {
+                case Brick:
+                case Marble:
+                case DeepWater:
+                    if (Collision(Map::mapObjects[i][k]->sprite, s))
+                    {
+                        return false;
+                    }
+                default:
+                    break;
+                }
+            }
+        }
     }
+
     return true;
 }
 void PlayerObject::Move()

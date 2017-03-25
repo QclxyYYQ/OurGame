@@ -2,6 +2,7 @@
 #include"BaseObject.h"
 #include"TileObject.h"
 namespace Map {
+    extern TileObject *mapObjects[Global::Game::MapGridNum][Global::Game::MapGridNum];
     void Init();
     void Render();
     void Update();

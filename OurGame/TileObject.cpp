@@ -8,6 +8,9 @@ bool TileObject::Init(ObjectType o, int x, int y)
     type = o;
     location.x = x;
     location.y = y;
+    sprite.x = MapTool::GetActualLocationX(x);
+    sprite.y = MapTool::GetActualLocationY(y);
+    sprite.width = sprite.height = Global::Game::UnitSize;
     return true;
 }
 
@@ -19,7 +22,7 @@ void TileObject::Render()
 {
     if (type != ObjectType::Null)
     {
-        Sprite_Draw_Frame(Resource::Textures::tileTextures, MapTool::GetActualLocationX(location.x), MapTool::GetActualLocationY(location.y), type - 1, Global::Game::UnitSize, Global::Game::UnitSize, 9);
+        Sprite_Draw_Frame(Resource::Textures::tileTextures, sprite.x,sprite.y, type - 1, sprite.width, sprite.height, 9);
     }
 
 }
